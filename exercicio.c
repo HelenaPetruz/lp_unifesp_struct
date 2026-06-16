@@ -10,7 +10,7 @@ typedef struct{
 
 void imprimeMenu();
 void inserir(Aluno[], int, int);
-void remover(Aluno[], int*, int);
+void remover(Aluno[], int, int);
 void visualizarTodos(Aluno[], int);
 int buscar(Aluno[], int, int);
 void mostraAluno(Aluno[], int, int);
@@ -38,7 +38,7 @@ int main()
             case 2:
                 printf("\nDigite o RA: ");
                 scanf("%d", &ra);
-                remover(turma, &n, ra);
+                remover(turma, n, ra);
                 break;
             case 3:
                 visualizarTodos(turma, n);
@@ -81,15 +81,15 @@ void inserir(Aluno turma[], int n, int ra){
     scanf("%d", &turma[n].frequencia);
 }
 
-void remover(Aluno turma[], int *n, int ra){
-    int posicao = buscar(turma, *n, ra);
+void remover(Aluno turma[], int n, int ra){
+    int posicao = buscar(turma, n, ra);
     if(posicao==-1)
         printf("Aluno nao encontrado");
     else{
-        for(int i = posicao; i < *n - 1; i++){
+        for(int i = posicao; i < n-1; i++){
             turma[i] = turma[i+1];
         }
-        (*n)--;
+        n--;
         printf("Aluno removido com sucesso!\n");
     }
 }
