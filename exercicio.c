@@ -14,6 +14,7 @@ void remover(Aluno[], int, int);
 void visualizarTodos(Aluno[], int);
 int buscar(Aluno[], int, int);
 void mostraAluno(Aluno[], int, int);
+float calculaMedia(Aluno[], int);
 
 int main()
 {
@@ -49,6 +50,17 @@ int main()
                 mostraAluno(turma, n, ra);
                 break;
             case 5:
+                printf("\nDigite o RA: ");
+                scanf("%d", &ra);
+                int pos = buscar(turma, n, ra);
+                if(pos!=-1){
+                    printf("Média do aluno: %d", calculaMedia(turma, pos));
+                }
+                else{
+                    printf("Aluno não encontrado!");
+                }
+                break;
+            case 6:
                 printf("\nSaindo do sistema!\n");
                 break;
         }
@@ -61,7 +73,8 @@ void imprimeMenu(){
     printf("2- remover aluno\n");
     printf("3- visualizar todos os aluno\n");
     printf("4- buscar aluno pelo RA\n");
-    printf("5- sair do sistema\n\n");
+    printf("5- Média de um aluno\n");
+    printf("6- sair do sistema\n\n");
     printf("Digite uma das opções: ");
 }
 
@@ -131,3 +144,11 @@ void mostraAluno(Aluno turma[], int n, int ra){
     }
 }
 
+float calculaMedia(Aluno turma[], int pos){
+    float soma=0;
+    for(int i=0; i<3; i++){
+        soma += turma[pos].notas[i];
+    }
+    return soma/3;
+}
+    
